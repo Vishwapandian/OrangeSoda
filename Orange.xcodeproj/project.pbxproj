@@ -12,6 +12,7 @@
 		E0226593282D842A00279ACE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0226592282D842A00279ACE /* Assets.xcassets */; };
 		E0226596282D842A00279ACE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0226595282D842A00279ACE /* Preview Assets.xcassets */; };
 		E05598FE282EB8A30062B086 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05598FD282EB8A30062B086 /* DayView.swift */; };
+		E0B4045F2832E27000A08177 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B4045E2832E27000A08177 /* Task.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		E0226592282D842A00279ACE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0226595282D842A00279ACE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E05598FD282EB8A30062B086 /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
+		E0B4045E2832E27000A08177 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 				E022658E282D842800279ACE /* OrangeApp.swift */,
 				E0226590282D842800279ACE /* ContentView.swift */,
 				E05598FD282EB8A30062B086 /* DayView.swift */,
+				E0B4045E2832E27000A08177 /* Task.swift */,
 				E0226592282D842A00279ACE /* Assets.xcassets */,
 				E0226594282D842A00279ACE /* Preview Content */,
 			);
@@ -140,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B4045F2832E27000A08177 /* Task.swift in Sources */,
 				E0226591282D842800279ACE /* ContentView.swift in Sources */,
 				E05598FE282EB8A30062B086 /* DayView.swift in Sources */,
 				E022658F282D842800279ACE /* OrangeApp.swift in Sources */,

@@ -11,6 +11,8 @@ struct DayView: View {
     
     @State var currentDate = Date()
     
+    var task = Task(name: "test", discription: "discription", date: Date(), priority: 1, dueNow: false, estimatedTime: 0, recurring: false)
+    
     var body: some View {
         VStack {
             HStack {
@@ -46,48 +48,62 @@ struct DayView: View {
             }
             .padding(7)
             HStack {
-                
-                Spacer()
-                
-                Button {
-                    currentDate = currentDate - 86400
-                } label: {
-                    ZStack {
-                        Circle()
-                            .foregroundColor(Color(red: 44/255, green: 90/255, blue: 130/255))
-                            .frame(width: 35, height: 35)
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.white)
-                            .font(Font.system(size: 20, weight: .bold))
+                ZStack {
+                    
+                    
+                    HStack {
+                        Button {
+                            currentDate = currentDate - 86400
+                        } label: {
+                            ZStack {
+                                //Circle()
+                                  //  .foregroundColor(Color(red: 84/255, green: 130/255, blue: 170/255))
+                                    //.frame(width: 35, height: 35)
+                                Image(systemName: "chevron.left")
+                                    .foregroundColor(Color(red: 44/255, green: 90/255, blue: 130/255))
+                                  //.foregroundColor(.white)
+                                    .font(Font.system(size: 20, weight: .bold))
+                                
+                            }
+                        }
+                        
+                        
+                        Spacer()
+                            .frame(width: 240)
+                            
+                        
+                        Button {
+                            currentDate = currentDate + 86400
+                        } label: {
+                            ZStack {
+                                //Circle()
+                                  //  .frame(width: 35, height: 35)
+                                    //.foregroundColor(Color(red: 44/255, green: 90/255, blue: 130/255))
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(Color(red: 44/255, green: 90/255, blue: 130/255))
+                                    //.foregroundColor(.white)
+                                    .font(Font.system(size: 20, weight: .bold))
+                            }
+                        }
+                        
                         
                     }
-                }
-                
-                Spacer()
-                
-                Text("\(currentDate.formatted(.dateTime.weekday(.wide).month(.wide).day()))")
-                    .font(Font.system(size: 20, weight: .bold))
-                
-                Spacer()
-                
-                Button {
-                    currentDate = currentDate + 86400
-                } label: {
-                    ZStack {
-                        Circle()
-                            .frame(width: 35, height: 35)
-                            .foregroundColor(Color(red: 44/255, green: 90/255, blue: 130/255))
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(.white)
+                        
+                        
+                        
+                        Text("\(currentDate.formatted(.dateTime.weekday(.wide).month(.wide).day()))")
                             .font(Font.system(size: 20, weight: .bold))
-                    }
+                        
+                        
+                        
                 }
-                
-                Spacer()
             }
             .padding()
             Spacer()
             
+            ScrollView {
+                
+            }
             
             
         }
