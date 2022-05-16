@@ -13,6 +13,8 @@ struct DayView: View {
     
     var task = Task(name: "test", discription: "discription", date: Date(), priority: 1, dueNow: false, estimatedTime: 0, recurring: false)
     
+    let hours = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    
     var body: some View {
         VStack {
             HStack {
@@ -102,7 +104,33 @@ struct DayView: View {
             Spacer()
             
             ScrollView {
-                
+                ForEach(0..<24) { time in
+                    HStack {
+                        VStack(alignment: .trailing) {
+                            Rectangle()
+                                .frame(width: 75, height: 1)
+                                .foregroundColor(.gray)
+                            if (time > 12) {
+                                Text("\(time - 12) PM")
+                                    .font(Font.system(size: 15, weight: .thin))
+                                    .foregroundColor(.gray)
+                                    .padding(.bottom, 30)
+                            } else if (time == 0) {
+                                Text("12 AM")
+                                    .font(Font.system(size: 15, weight: .thin))
+                                    .foregroundColor(.gray)
+                                    .padding(.bottom, 30)
+                            } else {
+                                Text("\(time) AM")
+                                    .font(Font.system(size: 15, weight: .thin))
+                                    .foregroundColor(.gray)
+                                    .padding(.bottom, 30)
+                            }
+                        }
+                        Spacer()
+                    }
+                    
+                }
             }
             
             
