@@ -118,7 +118,7 @@ struct DayView: View {
             .padding()
             Spacer()
             
-            ///*
+            /*
             List {
                 
                 ForEach(events, id: \.self) { event in
@@ -127,7 +127,7 @@ struct DayView: View {
                         Text((event.date ?? Date()), style: .date)
                         Text("Length: \(event.length) minutes")
                         //Text("Time: \(event.time ?? Date())")
-                        Text("Time: \(event.timeFloat)")
+                        Text("Time: \(event.time)")
                         if (event.repeats) {
                             Text("Repeats")
                         }
@@ -147,7 +147,7 @@ struct DayView: View {
                 })
                 
             }
-            //*/
+            */
             
             ScrollView {
                 ZStack {
@@ -187,7 +187,8 @@ struct DayView: View {
                         } // ForEach
                     } // VStack
                     
-                    VStack {
+                    
+                    ZStack {
                         ForEach(events, id: \.self) { event in
                             
                             let compareDate = event.date ?? Date()
@@ -195,50 +196,34 @@ struct DayView: View {
                             if ("\(currentDate.formatted(.dateTime.weekday(.wide).month(.wide).day()))" == "\(compareDate.formatted(.dateTime.weekday(.wide).month(.wide).day()))")
                             {
                                 
-                                /*
-                                VStack {
-                                    Text(event.name ?? "")
-                                    Text(compareDate, style: .date)
-                                    Text("Length: \(event.length) minutes")
-                                    //Text("Time: \(event.time ?? Date())")
-                                    Text("Time: \(event.time ?? "N/A")")
-                                    if (event.repeats) {
-                                        Text("Repeats")
-                                    }
-                                    if (event.anytime) {
-                                        Text("Event can be anytime")
-                                    }
-                                    
-                                }
-                                */
-                                
                                 HStack {
                                     Spacer()
-                                    ZStack {
-                                        
-                                        let len = (CGFloat)(event.length) * 1.55
-                                        
-                                        
-                                        Button {
+                                    VStack {
+                                        ZStack {
                                             
-                                        } label: {
+                                            let len = (CGFloat)(event.length) * 1.5
                                             
-                                            Rectangle()
-                                                .frame(width: 300, height: len)
-                                                .padding(.horizontal)
+                                            let topPadding = (CGFloat)(event.time) * 1.577
+                                            
+                                            
+                                            Button {
+                                                
+                                            } label: {
+                                                
+                                                RoundedRectangle(cornerRadius: 10)
+                                                    .frame(width: 300, height: len)
+                                                    .padding(.horizontal)
+                                                    .padding(.top, topPadding)
+                                            }
                                         }
-                                        
+                                        Spacer()
                                     }
-                                    
-                                    
                                 }
-                                
-                                
                             } // end of if
                             
                         }
-                        Spacer()
                     }
+                    
                     
                 } // ZStack
             }

@@ -250,7 +250,7 @@ struct AddView: View {
                     if nameOfEvent == "" {
                         nameOfEvent = "untitled event"
                     }
-                    coreDM.saveEvent(name: nameOfEvent, date: selectedDate, repeats: reccuring, length: totalMinutesInt, time: "result", anytime: anytimeBeforeBool, timeFloat: result)
+                    coreDM.saveEvent(name: nameOfEvent, date: selectedDate, repeats: reccuring, length: totalMinutesInt, anytime: anytimeBeforeBool, time: result)
                     showEventPicker = false
                 } label: {
                     HStack {
