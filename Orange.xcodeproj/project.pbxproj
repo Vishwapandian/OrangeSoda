@@ -13,6 +13,9 @@
 		E0226596282D842A00279ACE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0226595282D842A00279ACE /* Preview Assets.xcassets */; };
 		E05598FE282EB8A30062B086 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05598FD282EB8A30062B086 /* DayView.swift */; };
 		E0B4045F2832E27000A08177 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B4045E2832E27000A08177 /* Task.swift */; };
+		E0DC6E5E2833F77700DE5CDD /* ScheduleDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E0DC6E5C2833F77700DE5CDD /* ScheduleDataModel.xcdatamodeld */; };
+		E0DC6E602833F78B00DE5CDD /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DC6E5F2833F78B00DE5CDD /* CoreDataManager.swift */; };
+		E0DC6E622833F99200DE5CDD /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DC6E612833F99200DE5CDD /* AddView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,9 @@
 		E0226595282D842A00279ACE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E05598FD282EB8A30062B086 /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		E0B4045E2832E27000A08177 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		E0DC6E5D2833F77700DE5CDD /* ScheduleDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ScheduleDataModel.xcdatamodel; sourceTree = "<group>"; };
+		E0DC6E5F2833F78B00DE5CDD /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		E0DC6E612833F99200DE5CDD /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +63,8 @@
 			children = (
 				E022658E282D842800279ACE /* OrangeApp.swift */,
 				E0226590282D842800279ACE /* ContentView.swift */,
-				E05598FD282EB8A30062B086 /* DayView.swift */,
-				E0B4045E2832E27000A08177 /* Task.swift */,
+				E0DC6E5B2833F73F00DE5CDD /* Views */,
+				E0DC6E5A2833F72C00DE5CDD /* Managers */,
 				E0226592282D842A00279ACE /* Assets.xcassets */,
 				E0226594282D842A00279ACE /* Preview Content */,
 			);
@@ -71,6 +77,25 @@
 				E0226595282D842A00279ACE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E0DC6E5A2833F72C00DE5CDD /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				E0B4045E2832E27000A08177 /* Task.swift */,
+				E0DC6E5F2833F78B00DE5CDD /* CoreDataManager.swift */,
+				E0DC6E5C2833F77700DE5CDD /* ScheduleDataModel.xcdatamodeld */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		E0DC6E5B2833F73F00DE5CDD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E05598FD282EB8A30062B086 /* DayView.swift */,
+				E0DC6E612833F99200DE5CDD /* AddView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,8 +168,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0DC6E622833F99200DE5CDD /* AddView.swift in Sources */,
+				E0DC6E602833F78B00DE5CDD /* CoreDataManager.swift in Sources */,
 				E0B4045F2832E27000A08177 /* Task.swift in Sources */,
 				E0226591282D842800279ACE /* ContentView.swift in Sources */,
+				E0DC6E5E2833F77700DE5CDD /* ScheduleDataModel.xcdatamodeld in Sources */,
 				E05598FE282EB8A30062B086 /* DayView.swift in Sources */,
 				E022658F282D842800279ACE /* OrangeApp.swift in Sources */,
 			);
@@ -349,6 +377,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E0DC6E5C2833F77700DE5CDD /* ScheduleDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E0DC6E5D2833F77700DE5CDD /* ScheduleDataModel.xcdatamodel */,
+			);
+			currentVersion = E0DC6E5D2833F77700DE5CDD /* ScheduleDataModel.xcdatamodel */;
+			path = ScheduleDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E0226583282D842800279ACE /* Project object */;
 }
