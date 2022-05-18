@@ -19,9 +19,13 @@ struct DayView: View {
     
     @State var refreshBool = false
     
+    @State var showEdit = false
+    
     func populateCalender() {
         events = coreDM.getAllEvents()
     }
+    
+    @State var pickedEvent: Event? = nil
     
     var body: some View {
         VStack {
@@ -47,7 +51,7 @@ struct DayView: View {
                         }
                 
                 Button {
-                    populateCalender()
+                    
                 } label: {
                     HStack {
                         Spacer()
@@ -213,7 +217,8 @@ struct DayView: View {
                                             ZStack {
                                                 
                                                 Button {
-                                                    
+                                                    pickedEvent = event
+                                                    showEdit.toggle()
                                                 } label: {
                                                     
                                                     RoundedRectangle(cornerRadius: 10)
@@ -275,15 +280,24 @@ struct DayView: View {
             }
             
             
+        } // VStack
+        .overlay(alignment: .bottom) {
+            if (showEdit) {
+                CustomAlertView(coreDM: coreDM, showTaskManager: $showEdit, event: $pickedEvent)
+                    .animation(.spring())
+            }
         }
     }
 }
 
 
-
 struct DayView_Previews: PreviewProvider {
     static var previews: some View {
         DayView(coreDM: CoreDataManager())
+        
+        //CustomAlertView()
+        //    .padding()
+        //    .previewLayout(.sizeThatFits)
             
     }
 }
