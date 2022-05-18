@@ -12,7 +12,6 @@
 		E0226593282D842A00279ACE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0226592282D842A00279ACE /* Assets.xcassets */; };
 		E0226596282D842A00279ACE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0226595282D842A00279ACE /* Preview Assets.xcassets */; };
 		E05598FE282EB8A30062B086 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05598FD282EB8A30062B086 /* DayView.swift */; };
-		E0B4045F2832E27000A08177 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B4045E2832E27000A08177 /* Task.swift */; };
 		E0DC6E5E2833F77700DE5CDD /* ScheduleDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E0DC6E5C2833F77700DE5CDD /* ScheduleDataModel.xcdatamodeld */; };
 		E0DC6E602833F78B00DE5CDD /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DC6E5F2833F78B00DE5CDD /* CoreDataManager.swift */; };
 		E0DC6E622833F99200DE5CDD /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DC6E612833F99200DE5CDD /* AddView.swift */; };
@@ -25,7 +24,6 @@
 		E0226592282D842A00279ACE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0226595282D842A00279ACE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E05598FD282EB8A30062B086 /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
-		E0B4045E2832E27000A08177 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		E0DC6E5D2833F77700DE5CDD /* ScheduleDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ScheduleDataModel.xcdatamodel; sourceTree = "<group>"; };
 		E0DC6E5F2833F78B00DE5CDD /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		E0DC6E612833F99200DE5CDD /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
@@ -82,7 +80,6 @@
 		E0DC6E5A2833F72C00DE5CDD /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				E0B4045E2832E27000A08177 /* Task.swift */,
 				E0DC6E5F2833F78B00DE5CDD /* CoreDataManager.swift */,
 				E0DC6E5C2833F77700DE5CDD /* ScheduleDataModel.xcdatamodeld */,
 			);
@@ -170,7 +167,6 @@
 			files = (
 				E0DC6E622833F99200DE5CDD /* AddView.swift in Sources */,
 				E0DC6E602833F78B00DE5CDD /* CoreDataManager.swift in Sources */,
-				E0B4045F2832E27000A08177 /* Task.swift in Sources */,
 				E0226591282D842800279ACE /* ContentView.swift in Sources */,
 				E0DC6E5E2833F77700DE5CDD /* ScheduleDataModel.xcdatamodeld in Sources */,
 				E05598FE282EB8A30062B086 /* DayView.swift in Sources */,

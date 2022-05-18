@@ -18,10 +18,10 @@ struct AddView: View {
     @State var timeMatters = false
     
     @State var totalHours = "0 hours"
-    @State var totalMinutes = "5 minutes"
+    @State var totalMinutes = "0 minutes"
     
     @State var totalHoursInt: Int16 = 0
-    @State var totalMinutesInt: Int16 = 5
+    @State var totalMinutesInt: Int16 = 0
     
     @Binding var showEventPicker: Bool
     
@@ -141,7 +141,7 @@ struct AddView: View {
                         
                         Button {
                             totalMinutes = ("0 minutes")
-                            
+                            totalMinutesInt = 0
                         } label: {
                             Text("0 minutes")
                         }

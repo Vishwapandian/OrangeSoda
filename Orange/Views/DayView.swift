@@ -13,8 +13,6 @@ struct DayView: View {
     
     let coreDM: CoreDataManager
     
-    var task = Task(name: "test", discription: "discription", date: Date(), priority: 1, dueNow: false, estimatedTime: 0, recurring: false)
-    
     @State var events: [Event] = [Event]()
     
     @State private var showEventPicker = false
@@ -39,7 +37,7 @@ struct DayView: View {
                         Spacer()
                     }
                     .padding()
-                    .background(Color(red: 167/255, green: 206/255, blue: 239/255))
+                    .background(Color("color1"))
                     .cornerRadius(15)
                 }
                 .sheet(isPresented: $showEventPicker, onDismiss: {
@@ -59,8 +57,11 @@ struct DayView: View {
                         Spacer()
                     }
                     .padding()
-                    .background(Color(red: 88/255, green: 147/255, blue: 198/255))
+                    .background(Color("color2"))
                     .cornerRadius(15)
+                }
+                .onAppear {
+                    populateCalender()
                 }
             }
             .padding(7)
@@ -77,7 +78,7 @@ struct DayView: View {
                                   //  .foregroundColor(Color(red: 84/255, green: 130/255, blue: 170/255))
                                     //.frame(width: 35, height: 35)
                                 Image(systemName: "chevron.left")
-                                    .foregroundColor(Color(red: 44/255, green: 90/255, blue: 130/255))
+                                    .foregroundColor(Color("color3"))
                                   //.foregroundColor(.white)
                                     .font(Font.system(size: 20, weight: .bold))
                                 
@@ -97,7 +98,7 @@ struct DayView: View {
                                   //  .frame(width: 35, height: 35)
                                     //.foregroundColor(Color(red: 44/255, green: 90/255, blue: 130/255))
                                 Image(systemName: "chevron.right")
-                                    .foregroundColor(Color(red: 44/255, green: 90/255, blue: 130/255))
+                                    .foregroundColor(Color("color3"))
                                     //.foregroundColor(.white)
                                     .font(Font.system(size: 20, weight: .bold))
                             }
@@ -105,14 +106,14 @@ struct DayView: View {
                         
                         
                     }
+                    
+                    Button {
                         
-                        
-                        
+                    } label: {
                         Text("\(currentDate.formatted(.dateTime.weekday(.wide).month(.wide).day()))")
                             .font(Font.system(size: 20, weight: .bold))
-                        
-                        
-                        
+                            .foregroundColor(Color("color3"))
+                    }
                 }
             }
             .padding()
@@ -199,23 +200,68 @@ struct DayView: View {
                                 HStack {
                                     Spacer()
                                     VStack {
-                                        ZStack {
+                                        
+                                        VStack {
                                             
-                                            let len = (CGFloat)(event.length) * 1.5
+                                            let len = (CGFloat)(event.length) * 1.577
                                             
                                             let topPadding = (CGFloat)(event.time) * 1.577
                                             
+                                            Spacer()
+                                                .frame(height: topPadding)
                                             
-                                            Button {
+                                            ZStack {
                                                 
-                                            } label: {
+                                                Button {
+                                                    
+                                                } label: {
+                                                    
+                                                    RoundedRectangle(cornerRadius: 10)
+                                                        .frame(width: 300, height: len)
+                                                        .padding(.horizontal)
+                                                        .foregroundColor(Color("color2"))
+                                                }
                                                 
-                                                RoundedRectangle(cornerRadius: 10)
-                                                    .frame(width: 300, height: len)
-                                                    .padding(.horizontal)
-                                                    .offset(y: topPadding)
+                                                VStack {
+                                                    
+                                                    let length = event.length
+                                                    
+                                                    if(length >= 45) {
+                                                        Text(event.name ?? "")
+                                                            .bold()
+                                                            .foregroundColor(.white)
+                                                        if (length == 60) {
+                                                            Text("\((length / 60)) hour")
+                                                                .foregroundColor(.white)
+                                                                .opacity(0.8)
+                                                        } else if (length % 60 == 0) {
+                                                            Text("\(length / 60) hours")
+                                                                .foregroundColor(.white)
+                                                                .opacity(0.8)
+                                                        } else if (length < 120 && length > 45) {
+                                                            Text("\(length / 60) hour \(length % 60) minutes")
+                                                                .foregroundColor(.white)
+                                                                .opacity(0.8)
+                                                        } else if (length >= 45) {
+                                                            Text("\(length % 60) minutes")
+                                                                .foregroundColor(.white)
+                                                                .opacity(0.8)
+                                                        } else {
+                                                            Text("\(length / 60) hours \(length % 60) minutes")
+                                                                .foregroundColor(.white)
+                                                                .opacity(0.8)
+                                                        }
+                                                    } else if (length >= 20) {
+                                                        Text(event.name ?? "")
+                                                            .bold()
+                                                            .foregroundColor(.white)
+                                                    }
+                                                }
+                                                
                                             }
+
                                         }
+                                        
                                         Spacer()
                                     }
                                 }
