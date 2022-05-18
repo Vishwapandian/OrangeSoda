@@ -213,7 +213,7 @@ struct DayView: View {
                                                 RoundedRectangle(cornerRadius: 10)
                                                     .frame(width: 300, height: len)
                                                     .padding(.horizontal)
-                                                    .padding(.top, topPadding)
+                                                    .offset(y: topPadding)
                                             }
                                         }
                                         Spacer()

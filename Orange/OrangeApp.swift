@@ -11,7 +11,7 @@ import SwiftUI
 struct OrangeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            DayView(coreDM: CoreDataManager())
         }
     }
 }
