@@ -39,15 +39,7 @@ struct CustomAlertView : View {
                     .opacity(0)
                 
                 Spacer()
-                
-                
-                /*
-                Text(event?.name ?? "")
-                    .bold()
-                    .foregroundColor(.primary)
-                    .padding(.top, 30)
-                    .padding(.horizontal, 30)
-                 */
+            
                 
                 TextField(event?.name ?? "", text: $name)
                     //.bold()
@@ -296,7 +288,7 @@ struct CustomAlertView : View {
                 } label: {
                     Text("Save")
                         //.bold()
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color("color4"))
                         .padding(.horizontal)
                 }
                 
@@ -306,7 +298,7 @@ struct CustomAlertView : View {
                 } label: {
                     Text("Delete")
                         //.bold()
-                        .foregroundColor(.red)
+                        .foregroundColor(Color("color5"))
                         .padding(.horizontal)
                 }
             }

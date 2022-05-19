@@ -41,7 +41,7 @@ struct DayView: View {
                         Spacer()
                     }
                     .padding()
-                    .background(Color("color1"))
+                    .background(Color("color4"))
                     .cornerRadius(15)
                 }
                 .sheet(isPresented: $showEventPicker, onDismiss: {
@@ -61,7 +61,7 @@ struct DayView: View {
                         Spacer()
                     }
                     .padding()
-                    .background(Color("color2"))
+                    .background(Color("color5"))
                     .cornerRadius(15)
                 }
                 .onAppear {
@@ -221,10 +221,23 @@ struct DayView: View {
                                                     showEdit.toggle()
                                                 } label: {
                                                     
-                                                    RoundedRectangle(cornerRadius: 10)
-                                                        .frame(width: 300, height: len)
-                                                        .padding(.horizontal)
-                                                        .foregroundColor(Color("color2"))
+                                                    if (event.priority == 1) {
+                                                        RoundedRectangle(cornerRadius: 10)
+                                                            .frame(width: 300, height: len)
+                                                            .padding(.horizontal)
+                                                            .foregroundColor(Color("color0"))
+                                                    } else if (event.priority == 2) {
+                                                        RoundedRectangle(cornerRadius: 10)
+                                                            .frame(width: 300, height: len)
+                                                            .padding(.horizontal)
+                                                            .foregroundColor(Color("color1"))
+                                                    } else {
+                                                        RoundedRectangle(cornerRadius: 10)
+                                                            .frame(width: 300, height: len)
+                                                            .padding(.horizontal)
+                                                            .foregroundColor(Color("color2"))
+                                                    }
+                                                    
                                                 }
                                                 
                                                 VStack {

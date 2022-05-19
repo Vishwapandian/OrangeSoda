@@ -21,7 +21,7 @@ class CoreDataManager {
         }
     }
     
-    func saveEvent(name: String, date: Date, repeats: Bool, length: Int16, anytime: Bool, time: Float, selectedTime: Date) {
+    func saveEvent(name: String, date: Date, repeats: Bool, length: Int16, anytime: Bool, time: Float, selectedTime: Date, priority: Int16) {
         
         let event = Event(context: persistentContainer.viewContext)
         
@@ -32,6 +32,7 @@ class CoreDataManager {
         event.anytime = anytime
         event.time = time
         event.selectedTime = selectedTime
+        event.priority = priority
         
         do {
             try persistentContainer.viewContext .save()

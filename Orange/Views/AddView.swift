@@ -27,6 +27,8 @@ struct AddView: View {
     
     @State var anytimeBeforeBool = false
     
+    @State var priority = 1
+    
     var body: some View {
         VStack {
             
@@ -36,11 +38,102 @@ struct AddView: View {
                     TextField("Name of event", text: $nameOfEvent)
                 }
                 
+                
+                Section(header: Text("Priority")) {
+                    HStack {
+                        Spacer()
+                        Button {
+                            priority = 1
+                        } label: {
+                            
+                            if (priority == 1) {
+                                Text("Low")
+                                    .bold()
+                                    .foregroundColor(.white)
+                                    .padding(5)
+                                    .padding(.horizontal, 10)
+                                    .background(Color("color0"))
+                                    .cornerRadius(10)
+                            } else {
+                                Text("Low")
+                                    .bold()
+                                    .foregroundColor(Color("color0"))
+                                    .padding(5)
+                                    .padding(.horizontal, 10)
+                                    .overlay(
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .stroke(Color("color0"), lineWidth: 3)
+                                        )
+
+                            }
+                        }
+                        
+                        Spacer()
+                        
+                        Button {
+                            priority = 2
+                        } label: {
+                            if (priority == 2) {
+                                Text("Medium")
+                                    .bold()
+                                    .foregroundColor(.white)
+                                    .padding(5)
+                                    .padding(.horizontal, 10)
+                                    .background(Color("color1"))
+                                    .cornerRadius(10)
+                            } else {
+                                Text("Medium")
+                                    .bold()
+                                    .foregroundColor(Color("color1"))
+                                    .padding(5)
+                                    .padding(.horizontal, 10)
+                                    .overlay(
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .stroke(Color("color1"), lineWidth: 3)
+                                        )
+
+                            }
+                        }
+                        
+                        Spacer()
+                        
+                        Button {
+                            priority = 3
+                        } label: {
+                            if (priority == 3) {
+                                Text("High")
+                                    .bold()
+                                    .foregroundColor(.white)
+                                    .padding(5)
+                                    .padding(.horizontal, 10)
+                                    .background(Color("color2"))
+                                    .cornerRadius(10)
+                            } else {
+                                Text("High")
+                                    .bold()
+                                    .foregroundColor(Color("color2"))
+                                    .padding(5)
+                                    .padding(.horizontal, 10)
+                                    .overlay(
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .stroke(Color("color2"), lineWidth: 3)
+                                        )
+
+                            }
+                        }
+                        
+                        Spacer()
+                    }
+                    .buttonStyle(BorderlessButtonStyle())
+
+                }
+                 
+                 
                 Section(header: Text("Due date")) {
                     DatePicker("When: ", selection: $selectedDate, in: Date()..., displayedComponents: .date)
                         .datePickerStyle(.graphical)
                     
-                    Toggle("Can be anytime before", isOn: $anytimeBeforeBool)
+                    Toggle("Has to be on this day", isOn: $anytimeBeforeBool)
                     
                 }
                 
@@ -250,7 +343,7 @@ struct AddView: View {
                     if nameOfEvent == "" {
                         nameOfEvent = "untitled event"
                     }
-                    coreDM.saveEvent(name: nameOfEvent, date: selectedDate, repeats: reccuring, length: totalMinutesInt, anytime: anytimeBeforeBool, time: result, selectedTime: selectedTime)
+                    coreDM.saveEvent(name: nameOfEvent, date: selectedDate, repeats: reccuring, length: totalMinutesInt, anytime: anytimeBeforeBool, time: result, selectedTime: selectedTime, priority: Int16(priority))
                     showEventPicker = false
                 } label: {
                     HStack {
@@ -270,6 +363,6 @@ struct AddView: View {
 struct AddView_Previews: PreviewProvider {
     static var previews: some View {
         AddView(coreDM: CoreDataManager(), showEventPicker: .constant(true))
-            .preferredColorScheme(.dark)
+            //.preferredColorScheme(.dark)
     }
 }
