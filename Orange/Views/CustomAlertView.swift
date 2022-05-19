@@ -15,7 +15,10 @@ struct CustomAlertView : View {
     
     @Binding var event: Event?
     
+    @State var name = ""
+    
     @State var date = Date()
+    @State var dateMin = Date()
     
     @State var totalHours = "0 hours"
     @State var totalMinutes = "0 minutes"
@@ -36,11 +39,21 @@ struct CustomAlertView : View {
                 
                 Spacer()
                 
+                
+                /*
                 Text(event?.name ?? "")
                     .bold()
                     .foregroundColor(.primary)
                     .padding(.top, 30)
                     .padding(.horizontal, 30)
+                 */
+                
+                TextField(event?.name ?? "", text: $name)
+                    //.bold()
+                    .foregroundColor(.primary)
+                    .padding(.top, 30)
+                    .padding(.horizontal, 30)
+                
                 
                 Spacer()
                 
@@ -49,7 +62,7 @@ struct CustomAlertView : View {
                 } label: {
                     Image(systemName: "xmark.circle")
                         .font(Font.system(size: 20))
-                        .foregroundColor(.blue)
+                        .foregroundColor(.gray)
                         .padding(.top, 30)
                         .padding(.horizontal, 30)
                 }
@@ -58,12 +71,21 @@ struct CustomAlertView : View {
                         
             
             
+            HStack {
+                
+                DatePicker("Date", selection: $date, displayedComponents: [.date])
+                    .datePickerStyle(DefaultDatePickerStyle())
+                    .labelsHidden()
+                    .padding()
+                
+                DatePicker("Time", selection: $dateMin, displayedComponents: [.hourAndMinute])
+                    .datePickerStyle(DefaultDatePickerStyle())
+                    .labelsHidden()
+                    .padding()
+                
+            }
             
             
-            DatePicker("Date and Time", selection: $date, displayedComponents: [.date, .hourAndMinute])
-                .datePickerStyle(DefaultDatePickerStyle())
-                .labelsHidden()
-                .padding()
             
             HStack {
                 Menu {
@@ -147,7 +169,7 @@ struct CustomAlertView : View {
                     
                 } label: {
                     Text(totalHours)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.primary)
                 }
                 
                 Menu {
@@ -225,7 +247,7 @@ struct CustomAlertView : View {
                     
                 } label: {
                     Text(totalMinutes)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.primary)
                 }
 
             }
@@ -234,7 +256,31 @@ struct CustomAlertView : View {
             HStack {
                 
                 Button {
+                    
+                    let dateFormatter = DateFormatter()
+                    
+                    let dateFormatter2 = DateFormatter()
+                     
+                    dateFormatter.dateFormat = "HH"
+                    dateFormatter2.dateFormat = "mm"
+                     
+                    var result: Float
+                    
+                    let str1 = dateFormatter.string(from: date)
+                    let str2 = dateFormatter2.string(from: dateMin)
+                    
+                    let finalFloat = ((Float)(str1) ?? 1) * 60 + ((Float)(str2) ?? 1)
+                    
+                    result = finalFloat
+                    
+                    event!.date = date
+                    event!.length = (totalMinutesInt + (totalHoursInt * 60))
+                    event!.time = result
+                    
+                    coreDM.updateEvent()
+                    
                     showTaskManager.toggle()
+                    
                 } label: {
                     Text("Save")
                         .bold()
@@ -256,20 +302,27 @@ struct CustomAlertView : View {
             
             
         }
-        .background(RoundedRectangle(cornerRadius: 20).shadow(color: .black.opacity(0.2), radius: 3))
+        .background(RoundedRectangle(cornerRadius: 20).shadow(color: .primary.opacity(0.2), radius: 3))
         .padding(.horizontal)
         .transition(.move(edge: .bottom))
-        .foregroundColor(.white)
+        .foregroundColor(Color("backgroundColor"))
         .onAppear {
+            
+            name = event?.name ?? ""
+            
             date = event!.date ?? Date()
+            dateMin = event!.selectedTime ?? Date()
             totalHoursInt = event!.length / 60
             totalMinutesInt = event!.length % 60
             
-            if (totalHoursInt == 0) {
-                totalHours = "0 hours"
-            } else if (totalHoursInt == 1) {
+            if (totalHoursInt == 1) {
                 totalHours = "1 hour"
+            } else {
+                totalHours = "\(totalHoursInt) hours"
             }
+            
+            totalMinutes = "\(totalMinutesInt) minutes"
+            
         }
         
     }
