@@ -29,6 +29,7 @@ struct CustomAlertView : View {
     var body: some View {
         VStack {
             
+          //  /*
             HStack {
                 
                 Image(systemName: "xmark.circle")
@@ -51,8 +52,10 @@ struct CustomAlertView : View {
                 TextField(event?.name ?? "", text: $name)
                     //.bold()
                     .foregroundColor(.primary)
-                    .padding(.top, 30)
-                    .padding(.horizontal, 30)
+                    .padding(5)
+                    .multilineTextAlignment(.center)
+                    .background(Color(.gray).opacity(0.1))
+                    .cornerRadius(10)
                 
                 
                 Spacer()
@@ -63,12 +66,11 @@ struct CustomAlertView : View {
                     Image(systemName: "xmark.circle")
                         .font(Font.system(size: 20))
                         .foregroundColor(.gray)
-                        .padding(.top, 30)
                         .padding(.horizontal, 30)
                 }
 
             }
-                        
+            .padding(.top, 30)
             
             
             HStack {
@@ -76,12 +78,12 @@ struct CustomAlertView : View {
                 DatePicker("Date", selection: $date, displayedComponents: [.date])
                     .datePickerStyle(DefaultDatePickerStyle())
                     .labelsHidden()
-                    .padding()
+                    .padding(.top, 30)
                 
                 DatePicker("Time", selection: $dateMin, displayedComponents: [.hourAndMinute])
                     .datePickerStyle(DefaultDatePickerStyle())
                     .labelsHidden()
-                    .padding()
+                    .padding(.top, 30)
                 
             }
             
@@ -170,6 +172,9 @@ struct CustomAlertView : View {
                 } label: {
                     Text(totalHours)
                         .foregroundColor(.primary)
+                        .padding(7)
+                        .background(Color(.gray).opacity(0.1))
+                        .cornerRadius(10)
                 }
                 
                 Menu {
@@ -248,9 +253,12 @@ struct CustomAlertView : View {
                 } label: {
                     Text(totalMinutes)
                         .foregroundColor(.primary)
+                        .padding(7)
+                        .background(Color(.gray).opacity(0.1))
+                        .cornerRadius(10)
                 }
 
-            }
+            }.padding(.top, 25)
             
             
             HStack {
@@ -263,19 +271,23 @@ struct CustomAlertView : View {
                      
                     dateFormatter.dateFormat = "HH"
                     dateFormatter2.dateFormat = "mm"
-                     
-                    var result: Float
                     
-                    let str1 = dateFormatter.string(from: date)
+                    let str1 = dateFormatter.string(from: dateMin)
                     let str2 = dateFormatter2.string(from: dateMin)
                     
-                    let finalFloat = ((Float)(str1) ?? 1) * 60 + ((Float)(str2) ?? 1)
-                    
-                    result = finalFloat
+                    let result = ((Float)(str1) ?? 1) * 60 + ((Float)(str2) ?? 1)
                     
                     event!.date = date
+                    
                     event!.length = (totalMinutesInt + (totalHoursInt * 60))
+                    
                     event!.time = result
+                    
+                    print(result)
+                    
+                    event!.selectedTime = dateMin
+                    
+                    event!.name = name
                     
                     coreDM.updateEvent()
                     
@@ -283,22 +295,22 @@ struct CustomAlertView : View {
                     
                 } label: {
                     Text("Save")
-                        .bold()
+                        //.bold()
                         .foregroundColor(.blue)
-                        .padding()
+                        .padding(.horizontal)
                 }
-                .padding()
                 
                 Button {
                     coreDM.deleteEvent(event: event!)
                     showTaskManager.toggle()
                 } label: {
                     Text("Delete")
-                        .bold()
+                        //.bold()
                         .foregroundColor(.red)
-                        .padding()
+                        .padding(.horizontal)
                 }
             }
+            .padding()
             
             
         }
