@@ -27,6 +27,22 @@ struct DayView: View {
         events = coreDM.getAllEvents()
     }
     
+    func getPadding()->CGFloat {
+        let dateFormatter = DateFormatter()
+        
+        let dateFormatter2 = DateFormatter()
+         
+        dateFormatter.dateFormat = "HH"
+        dateFormatter2.dateFormat = "mm"
+        
+        let str1 = dateFormatter.string(from: Date())
+        let str2 = dateFormatter2.string(from: Date())
+        
+        let result = ((Float)(str1) ?? 1) * 60 + ((Float)(str2) ?? 1)
+        
+        return ((CGFloat)(result) * 1.577)
+    }
+    
     @State var pickedEvent: Event? = nil
     
     var body: some View {
@@ -277,6 +293,7 @@ struct DayView: View {
 
             }
             .padding(5)
+            
             /*
             List {
                 
@@ -445,8 +462,21 @@ struct DayView: View {
                             } // end of if
                             
                         }
+                        
+                        VStack {
+                            VStack {
+                                Spacer()
+                                    .frame(height: getPadding())
+                                
+                                Line()
+                                    .stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
+                                    .frame(height: 1)
+                                    .foregroundColor(Color("color5"))
+                            }
+                            Spacer()
+                        }
+                        
                     }
-                    
                     
                 } // ZStack
             }
@@ -459,6 +489,15 @@ struct DayView: View {
                     .animation(.spring())
             }
         }
+    }
+}
+
+struct Line: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: rect.width, y: 0))
+        return path
     }
 }
 

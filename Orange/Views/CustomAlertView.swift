@@ -28,6 +28,9 @@ struct CustomAlertView : View {
     
     @State var priority = 1
     
+    //@State var anytime = false
+    //@State var anyday = false
+    
     var body: some View {
         VStack {
             
@@ -165,7 +168,6 @@ struct CustomAlertView : View {
                     .datePickerStyle(DefaultDatePickerStyle())
                     .labelsHidden()
                     .padding(.top, 30)
-                
             }
             
             
@@ -364,17 +366,17 @@ struct CustomAlertView : View {
                     
                     event!.time = result
                     
-                    print(result)
-                    
                     event!.selectedTime = dateMin
                     
                     event!.name = name
                     
                     event!.priority = (Int16)(priority)
                     
-                    coreDM.updateEvent()
-                    
-                    showTaskManager.toggle()
+                    if ((totalMinutesInt + (totalHoursInt * 60)) != 0) {
+                        coreDM.updateEvent()
+                        
+                        showTaskManager.toggle()
+                    }
                     
                 } label: {
                     Text("Save")
@@ -406,6 +408,9 @@ struct CustomAlertView : View {
             name = event?.name ?? ""
             
             priority = (Int)(event!.priority)
+            
+            //anytime = event!.anytime
+            //anyday = event!.anyday
             
             date = event!.date ?? Date()
             dateMin = event!.selectedTime ?? Date()

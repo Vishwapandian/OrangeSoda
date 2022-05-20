@@ -352,8 +352,12 @@ struct AddView: View {
                     if nameOfEvent == "" {
                         nameOfEvent = "untitled event"
                     }
-                    coreDM.saveEvent(name: nameOfEvent, date: selectedDate, repeats: reccuring, length: totalMinutesInt, anytime: anytimeBeforeBool, time: result, selectedTime: selectedTime, priority: Int16(priority))
-                    showEventPicker = false
+                    
+                    if (totalMinutesInt != 0) {
+                        coreDM.saveEvent(name: nameOfEvent, date: selectedDate, repeats: reccuring, length: totalMinutesInt, anytime: timeMatters, time: result, selectedTime: selectedTime, priority: Int16(priority), anyday: anytimeBeforeBool)
+                        showEventPicker = false
+                    }
+                    
                 } label: {
                     HStack {
                         Spacer()
@@ -368,6 +372,7 @@ struct AddView: View {
                         Spacer()
                     }
                 }
+                .buttonStyle(BorderlessButtonStyle())
                 .listRowBackground(Color.clear)
                 
             }
