@@ -29,13 +29,15 @@ struct AddView: View {
     
     @State var priority = 1
     
+    @State var colorPriority = Color("color0")
+    
     var body: some View {
         VStack {
             
             Form {
                 
                 Section {
-                    TextField("Name of event", text: $nameOfEvent)
+                    TextField("Name of task", text: $nameOfEvent)
                 }
                 
                 
@@ -44,6 +46,7 @@ struct AddView: View {
                         Spacer()
                         Button {
                             priority = 1
+                            colorPriority = Color("color0")
                         } label: {
                             
                             if (priority == 1) {
@@ -62,7 +65,7 @@ struct AddView: View {
                                     .padding(.horizontal, 10)
                                     .overlay(
                                             RoundedRectangle(cornerRadius: 10)
-                                                .stroke(Color("color0"), lineWidth: 3)
+                                                .stroke(Color("color0"), lineWidth: 2)
                                         )
 
                             }
@@ -72,6 +75,7 @@ struct AddView: View {
                         
                         Button {
                             priority = 2
+                            colorPriority = Color("color1")
                         } label: {
                             if (priority == 2) {
                                 Text("Medium")
@@ -89,7 +93,7 @@ struct AddView: View {
                                     .padding(.horizontal, 10)
                                     .overlay(
                                             RoundedRectangle(cornerRadius: 10)
-                                                .stroke(Color("color1"), lineWidth: 3)
+                                                .stroke(Color("color1"), lineWidth: 2)
                                         )
 
                             }
@@ -99,6 +103,7 @@ struct AddView: View {
                         
                         Button {
                             priority = 3
+                            colorPriority = Color("color2")
                         } label: {
                             if (priority == 3) {
                                 Text("High")
@@ -116,7 +121,7 @@ struct AddView: View {
                                     .padding(.horizontal, 10)
                                     .overlay(
                                             RoundedRectangle(cornerRadius: 10)
-                                                .stroke(Color("color2"), lineWidth: 3)
+                                                .stroke(Color("color2"), lineWidth: 2)
                                         )
 
                             }
@@ -129,11 +134,13 @@ struct AddView: View {
                 }
                  
                  
-                Section(header: Text("Due date")) {
+                Section(header: Text("Due date"), footer: Text("(Ai will pick a day before the due date)")) {
                     DatePicker("When: ", selection: $selectedDate, in: Date()..., displayedComponents: .date)
                         .datePickerStyle(.graphical)
+                        .accentColor(colorPriority)
                     
-                    Toggle("Has to be on this day", isOn: $anytimeBeforeBool)
+                    Toggle("Let the Ai pick a day", isOn: $anytimeBeforeBool)
+                        .tint(colorPriority)
                     
                 }
                 
@@ -142,10 +149,11 @@ struct AddView: View {
                         DatePicker("",selection: $selectedTime, displayedComponents: .hourAndMinute)
                             .datePickerStyle(.wheel)
                     }
-                    Toggle("Time doesn't matter", isOn: $timeMatters)
+                    Toggle("Let the Ai pick a time", isOn: $timeMatters)
+                        .tint(colorPriority)
                 }
                 
-                Section(header: Text("event length")) {
+                Section(header: Text("task length")) {
                     Menu {
                         
                         Button {
@@ -312,6 +320,7 @@ struct AddView: View {
                 
                 Section {
                     Toggle("Is this a recurring event?", isOn: $reccuring)
+                        .tint(colorPriority)
                 }
                 
                 Button {
@@ -348,13 +357,19 @@ struct AddView: View {
                 } label: {
                     HStack {
                         Spacer()
-                        Text("Confirm")
-                            .foregroundColor(.green)
-                            .font(.title)
+                        Text("Add Task +")
+                            .font(.title2)
                             .bold()
+                            .foregroundColor(.white)
+                            .padding(5)
+                            .padding(.horizontal, 10)
+                            .background(colorPriority)
+                            .cornerRadius(10)
                         Spacer()
                     }
                 }
+                .listRowBackground(Color.clear)
+                
             }
         }
     }
@@ -363,6 +378,6 @@ struct AddView: View {
 struct AddView_Previews: PreviewProvider {
     static var previews: some View {
         AddView(coreDM: CoreDataManager(), showEventPicker: .constant(true))
-            //.preferredColorScheme(.dark)
+            .preferredColorScheme(.dark)
     }
 }

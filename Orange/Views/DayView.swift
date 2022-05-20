@@ -11,6 +11,8 @@ struct DayView: View {
     
     @State var currentDate = Date()
     
+    @State var showDate = Date()
+    
     let coreDM: CoreDataManager
     
     @State var events: [Event] = [Event]()
@@ -61,7 +63,7 @@ struct DayView: View {
                         Spacer()
                     }
                     .padding()
-                    .background(Color("color5"))
+                    .background(Color("color4"))
                     .cornerRadius(15)
                 }
                 .onAppear {
@@ -69,60 +71,212 @@ struct DayView: View {
                 }
             }
             .padding(7)
+            
             HStack {
-                ZStack {
+                
+                Button {
+                    showDate -= 518400
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(Color("color4"))
+                        .font(Font.system(size: 20, weight: .bold))
+                        .padding(.horizontal, 5)
+                }
+                
+                Button {
+                    currentDate = showDate
+                } label: {
                     
-                    
-                    HStack {
-                        Button {
-                            currentDate = currentDate - 86400
-                        } label: {
-                            ZStack {
-                                //Circle()
-                                  //  .foregroundColor(Color(red: 84/255, green: 130/255, blue: 170/255))
-                                    //.frame(width: 35, height: 35)
-                                Image(systemName: "chevron.left")
-                                    .foregroundColor(Color("color3"))
-                                  //.foregroundColor(.white)
-                                    .font(Font.system(size: 20, weight: .bold))
-                                
-                            }
+                    if (currentDate == showDate) {
+                        VStack {
+                            Text("\(showDate.formatted(.dateTime.day()))")
+                                .font(Font.system(size: 20, weight: .bold))
+                                .foregroundColor(Color("color5"))
+                            Text("\(showDate.formatted(.dateTime.weekday(.short)))")
+                                .font(Font.system(size: 20))
+                                .foregroundColor(Color("color5"))
                         }
-                        
-                        
-                        Spacer()
-                            .frame(width: 240)
-                            
-                        
-                        Button {
-                            currentDate = currentDate + 86400
-                        } label: {
-                            ZStack {
-                                //Circle()
-                                  //  .frame(width: 35, height: 35)
-                                    //.foregroundColor(Color(red: 44/255, green: 90/255, blue: 130/255))
-                                Image(systemName: "chevron.right")
-                                    .foregroundColor(Color("color3"))
-                                    //.foregroundColor(.white)
-                                    .font(Font.system(size: 20, weight: .bold))
-                            }
+                        .padding(5)
+                        .padding(.horizontal, 5)
+                        .background(Color("color5").opacity(0.3))
+                        .cornerRadius(10)
+                    } else {
+                        VStack {
+                            Text("\(showDate.formatted(.dateTime.day()))")
+                                .font(Font.system(size: 20, weight: .bold))
+                                .foregroundColor(Color("color4"))
+                            Text("\(showDate.formatted(.dateTime.weekday(.short)))")
+                                .font(Font.system(size: 20))
+                                .foregroundColor(Color("color4"))
                         }
-                        
-                        
+                        .padding(5)
+                        .padding(.horizontal, 5)
                     }
                     
-                    Button {
-                        
-                    } label: {
-                        Text("\(currentDate.formatted(.dateTime.weekday(.wide).month(.wide).day()))")
-                            .font(Font.system(size: 20, weight: .bold))
-                            .foregroundColor(Color("color3"))
+                }
+                
+                Button {
+                    currentDate = (showDate + 86400)
+                } label: {
+                    if (currentDate == (showDate + 86400)) {
+                        VStack {
+                            Text("\((showDate + 86400).formatted(.dateTime.day()))")
+                                .font(Font.system(size: 20, weight: .bold))
+                                .foregroundColor(Color("color5"))
+                            Text("\((showDate + 86400).formatted(.dateTime.weekday(.short)))")
+                                .font(Font.system(size: 20))
+                                .foregroundColor(Color("color5"))
+                        }
+                        .padding(5)
+                        .padding(.horizontal, 5)
+                        .background(Color("color5").opacity(0.3))
+                        .cornerRadius(10)
+                    } else {
+                        VStack {
+                            Text("\((showDate + 86400).formatted(.dateTime.day()))")
+                                .font(Font.system(size: 20, weight: .bold))
+                                .foregroundColor(Color("color4"))
+                            Text("\((showDate + 86400).formatted(.dateTime.weekday(.short)))")
+                                .font(Font.system(size: 20))
+                                .foregroundColor(Color("color4"))
+                        }
+                        .padding(5)
+                        .padding(.horizontal, 5)
                     }
                 }
+                
+                Button {
+                    currentDate = (showDate + 172800)
+                } label: {
+                    if (currentDate == (showDate + 172800)) {
+                        VStack {
+                            Text("\((showDate + 172800).formatted(.dateTime.day()))")
+                                .font(Font.system(size: 20, weight: .bold))
+                                .foregroundColor(Color("color5"))
+                            Text("\((showDate + 172800).formatted(.dateTime.weekday(.short)))")
+                                .font(Font.system(size: 20))
+                                .foregroundColor(Color("color5"))
+                        }
+                        .padding(5)
+                        .padding(.horizontal, 5)
+                        .background(Color("color5").opacity(0.3))
+                        .cornerRadius(10)
+                    } else {
+                        VStack {
+                            Text("\((showDate + 172800).formatted(.dateTime.day()))")
+                                .font(Font.system(size: 20, weight: .bold))
+                                .foregroundColor(Color("color4"))
+                            Text("\((showDate + 172800).formatted(.dateTime.weekday(.short)))")
+                                .font(Font.system(size: 20))
+                                .foregroundColor(Color("color4"))
+                        }
+                        .padding(5)
+                        .padding(.horizontal, 5)
+                    }
+                }
+                
+                Button {
+                    currentDate = (showDate + 259200)
+                } label: {
+                    if (currentDate == (showDate + 259200)) {
+                        VStack {
+                            Text("\((showDate + 259200).formatted(.dateTime.day()))")
+                                .font(Font.system(size: 20, weight: .bold))
+                                .foregroundColor(Color("color5"))
+                            Text("\((showDate + 259200).formatted(.dateTime.weekday(.short)))")
+                                .font(Font.system(size: 20))
+                                .foregroundColor(Color("color5"))
+                        }
+                        .padding(5)
+                        .padding(.horizontal, 5)
+                        .background(Color("color5").opacity(0.3))
+                        .cornerRadius(10)
+                    } else {
+                        VStack {
+                            Text("\((showDate + 259200).formatted(.dateTime.day()))")
+                                .font(Font.system(size: 20, weight: .bold))
+                                .foregroundColor(Color("color4"))
+                            Text("\((showDate + 259200).formatted(.dateTime.weekday(.short)))")
+                                .font(Font.system(size: 20))
+                                .foregroundColor(Color("color4"))
+                        }
+                        .padding(5)
+                        .padding(.horizontal, 5)
+                    }
+                }
+                
+                Button {
+                    currentDate = (showDate + 345600)
+                } label: {
+                    if (currentDate == (showDate + 345600)) {
+                        VStack {
+                            Text("\((showDate + 345600).formatted(.dateTime.day()))")
+                                .font(Font.system(size: 20, weight: .bold))
+                                .foregroundColor(Color("color5"))
+                            Text("\((showDate + 345600).formatted(.dateTime.weekday(.short)))")
+                                .font(Font.system(size: 20))
+                                .foregroundColor(Color("color5"))
+                        }
+                        .padding(5)
+                        .padding(.horizontal, 5)
+                        .background(Color("color5").opacity(0.3))
+                        .cornerRadius(10)
+                    } else {
+                        VStack {
+                            Text("\((showDate + 345600).formatted(.dateTime.day()))")
+                                .font(Font.system(size: 20, weight: .bold))
+                                .foregroundColor(Color("color4"))
+                            Text("\((showDate + 345600).formatted(.dateTime.weekday(.short)))")
+                                .font(Font.system(size: 20))
+                                .foregroundColor(Color("color4"))
+                        }
+                        .padding(5)
+                        .padding(.horizontal, 5)
+                    }
+                }
+                
+                Button {
+                    currentDate = (showDate + 432000)
+                } label: {
+                    if (currentDate == (showDate + 432000)) {
+                        VStack {
+                            Text("\((showDate + 432000).formatted(.dateTime.day()))")
+                                .font(Font.system(size: 20, weight: .bold))
+                                .foregroundColor(Color("color5"))
+                            Text("\((showDate + 432000).formatted(.dateTime.weekday(.short)))")
+                                .font(Font.system(size: 20))
+                                .foregroundColor(Color("color5"))
+                        }
+                        .padding(5)
+                        .padding(.horizontal, 5)
+                        .background(Color("color5").opacity(0.3))
+                        .cornerRadius(10)
+                    } else {
+                        VStack {
+                            Text("\((showDate + 432000).formatted(.dateTime.day()))")
+                                .font(Font.system(size: 20, weight: .bold))
+                                .foregroundColor(Color("color4"))
+                            Text("\((showDate + 432000).formatted(.dateTime.weekday(.short)))")
+                                .font(Font.system(size: 20))
+                                .foregroundColor(Color("color4"))
+                        }
+                        .padding(5)
+                        .padding(.horizontal, 5)
+                    }
+                }
+                
+                Button {
+                    showDate += 518400
+                } label: {
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(Color("color4"))
+                        .font(Font.system(size: 20, weight: .bold))
+                        .padding(.horizontal, 5)
+                }
+
+
             }
-            .padding()
-            Spacer()
-            
+            .padding(5)
             /*
             List {
                 
@@ -164,21 +318,26 @@ struct DayView: View {
                                 VStack(alignment: .trailing) {
                                     Rectangle()
                                         .frame(width: 75, height: 1)
-                                        .foregroundColor(.gray)
+                                        .foregroundColor(Color("color5"))
                                     if (time > 12) {
                                         Text("\(time - 12) PM")
                                             .font(Font.system(size: 15, weight: .thin))
-                                            .foregroundColor(.gray)
+                                            .foregroundColor(Color("color5"))
                                             .padding(.bottom, 60)
                                     } else if (time == 0) {
                                         Text("12 AM")
                                             .font(Font.system(size: 15, weight: .thin))
-                                            .foregroundColor(.gray)
+                                            .foregroundColor(Color("color5"))
+                                            .padding(.bottom, 60)
+                                    } else if (time == 12) {
+                                        Text("12 PM")
+                                            .font(Font.system(size: 15, weight: .thin))
+                                            .foregroundColor(Color("color5"))
                                             .padding(.bottom, 60)
                                     } else {
                                         Text("\(time) AM")
                                             .font(Font.system(size: 15, weight: .thin))
-                                            .foregroundColor(.gray)
+                                            .foregroundColor(Color("color5"))
                                             .padding(.bottom, 60)
                                     }
                                 } // VStack
@@ -307,6 +466,7 @@ struct DayView: View {
 struct DayView_Previews: PreviewProvider {
     static var previews: some View {
         DayView(coreDM: CoreDataManager())
+            .preferredColorScheme(.dark)
         
         //CustomAlertView()
         //    .padding()

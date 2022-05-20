@@ -26,6 +26,8 @@ struct CustomAlertView : View {
     @State var totalHoursInt: Int16 = 0
     @State var totalMinutesInt: Int16 = 0
     
+    @State var priority = 1
+    
     var body: some View {
         VStack {
             
@@ -61,6 +63,93 @@ struct CustomAlertView : View {
                         .padding(.horizontal, 30)
                 }
 
+            }
+            .padding(.top, 30)
+            
+            
+            HStack {
+                Spacer()
+                Button {
+                    priority = 1
+                } label: {
+                    
+                    if (priority == 1) {
+                        Text("Low")
+                            .bold()
+                            .foregroundColor(.white)
+                            .padding(5)
+                            .padding(.horizontal, 10)
+                            .background(Color("color0"))
+                            .cornerRadius(10)
+                    } else {
+                        Text("Low")
+                            .bold()
+                            .foregroundColor(Color("color0"))
+                            .padding(5)
+                            .padding(.horizontal, 10)
+                            .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color("color0"), lineWidth: 2)
+                                )
+
+                    }
+                }
+                
+                Spacer()
+                
+                Button {
+                    priority = 2
+                } label: {
+                    if (priority == 2) {
+                        Text("Medium")
+                            .bold()
+                            .foregroundColor(.white)
+                            .padding(5)
+                            .padding(.horizontal, 10)
+                            .background(Color("color1"))
+                            .cornerRadius(10)
+                    } else {
+                        Text("Medium")
+                            .bold()
+                            .foregroundColor(Color("color1"))
+                            .padding(5)
+                            .padding(.horizontal, 10)
+                            .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color("color1"), lineWidth: 2)
+                                )
+
+                    }
+                }
+                
+                Spacer()
+                
+                Button {
+                    priority = 3
+                } label: {
+                    if (priority == 3) {
+                        Text("High")
+                            .bold()
+                            .foregroundColor(.white)
+                            .padding(5)
+                            .padding(.horizontal, 10)
+                            .background(Color("color2"))
+                            .cornerRadius(10)
+                    } else {
+                        Text("High")
+                            .bold()
+                            .foregroundColor(Color("color2"))
+                            .padding(5)
+                            .padding(.horizontal, 10)
+                            .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color("color2"), lineWidth: 2)
+                                )
+
+                    }
+                }
+                
+                Spacer()
             }
             .padding(.top, 30)
             
@@ -281,6 +370,8 @@ struct CustomAlertView : View {
                     
                     event!.name = name
                     
+                    event!.priority = (Int16)(priority)
+                    
                     coreDM.updateEvent()
                     
                     showTaskManager.toggle()
@@ -288,7 +379,7 @@ struct CustomAlertView : View {
                 } label: {
                     Text("Save")
                         //.bold()
-                        .foregroundColor(Color("color4"))
+                        .foregroundColor(Color("color0"))
                         .padding(.horizontal)
                 }
                 
@@ -298,7 +389,7 @@ struct CustomAlertView : View {
                 } label: {
                     Text("Delete")
                         //.bold()
-                        .foregroundColor(Color("color5"))
+                        .foregroundColor(Color("color2"))
                         .padding(.horizontal)
                 }
             }
@@ -313,6 +404,8 @@ struct CustomAlertView : View {
         .onAppear {
             
             name = event?.name ?? ""
+            
+            priority = (Int)(event!.priority)
             
             date = event!.date ?? Date()
             dateMin = event!.selectedTime ?? Date()
