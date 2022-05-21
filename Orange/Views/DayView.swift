@@ -365,164 +365,171 @@ struct DayView: View {
             */
             
             ScrollView {
-                ZStack {
-                    
-                    VStack {
-                        ForEach(0..<24) { time in
-                            
-                            HStack {
-                                VStack(alignment: .trailing) {
-                                    Rectangle()
-                                        .frame(width: 75, height: 1)
-                                        .foregroundColor(Color("color5"))
-                                    if (time > 12) {
-                                        Text("\(time - 12) PM")
-                                            .font(Font.system(size: 15, weight: .thin))
-                                            .foregroundColor(Color("color5"))
-                                            .padding(.bottom, 60)
-                                    } else if (time == 0) {
-                                        Text("12 AM")
-                                            .font(Font.system(size: 15, weight: .thin))
-                                            .foregroundColor(Color("color5"))
-                                            .padding(.bottom, 60)
-                                    } else if (time == 12) {
-                                        Text("12 PM")
-                                            .font(Font.system(size: 15, weight: .thin))
-                                            .foregroundColor(Color("color5"))
-                                            .padding(.bottom, 60)
-                                    } else {
-                                        Text("\(time) AM")
-                                            .font(Font.system(size: 15, weight: .thin))
-                                            .foregroundColor(Color("color5"))
-                                            .padding(.bottom, 60)
-                                    }
-                                } // VStack
-                                Spacer()
-                                
-                                if (refreshBool) {
-                                    
-                                }
-                            } // HStack
-                           
-                        } // ForEach
-                    } // VStack
-                    
+                ScrollViewReader { proxy in
                     
                     ZStack {
-                        ForEach(events, id: \.self) { event in
-                            
-                            let compareDate = event.date ?? Date()
-                            
-                            if ("\(currentDate.formatted(.dateTime.weekday(.wide).month(.wide).day()))" == "\(compareDate.formatted(.dateTime.weekday(.wide).month(.wide).day()))")
-                            {
-                                
-                                HStack {
-                                    Spacer()
-                                    VStack {
-                                        
-                                        HStack {
-                                            Spacer()
-                                                .frame(width: 80, alignment: .leading)
-                                            
-                                            VStack {
-                                                
-                                                let len = (CGFloat)(event.length) * 1.577
-                                                
-                                                let topPadding = (CGFloat)(event.time) * 1.577
-                                                
-                                                Spacer()
-                                                    .frame(height: topPadding)
-                                                
-                                                ZStack {
-                                                    
-                                                    Button {
-                                                        pickedEvent = event
-                                                        showEdit.toggle()
-                                                    } label: {
-                                                        
-                                                        if (event.priority == 1) {
-                                                            RoundedRectangle(cornerRadius: 10)
-                                                                .frame(width: .infinity, height: len)
-                                                                .padding(.horizontal)
-                                                                .foregroundColor(Color("color0"))
-                                                        } else if (event.priority == 2) {
-                                                            RoundedRectangle(cornerRadius: 10)
-                                                                .frame(width: 300, height: len)
-                                                                .padding(.horizontal)
-                                                                .foregroundColor(Color("color1"))
-                                                        } else {
-                                                            RoundedRectangle(cornerRadius: 10)
-                                                                .frame(width: 300, height: len)
-                                                                .padding(.horizontal)
-                                                                .foregroundColor(Color("color2"))
-                                                        }
-                                                        
-                                                    }
-                                                    
-                                                    VStack {
-                                                        
-                                                        let length = event.length
-                                                        
-                                                        if(length >= 45) {
-                                                            Text(event.name ?? "")
-                                                                .bold()
-                                                                .foregroundColor(.white)
-                                                            if (length == 60) {
-                                                                Text("\((length / 60)) hour")
-                                                                    .foregroundColor(.white)
-                                                                    .opacity(0.8)
-                                                            } else if (length % 60 == 0) {
-                                                                Text("\(length / 60) hours")
-                                                                    .foregroundColor(.white)
-                                                                    .opacity(0.8)
-                                                            } else if (length < 120 && length > 45) {
-                                                                Text("\(length / 60) hour \(length % 60) minutes")
-                                                                    .foregroundColor(.white)
-                                                                    .opacity(0.8)
-                                                            } else if (length >= 45) {
-                                                                Text("\(length % 60) minutes")
-                                                                    .foregroundColor(.white)
-                                                                    .opacity(0.8)
-                                                            } else {
-                                                                Text("\(length / 60) hours \(length % 60) minutes")
-                                                                    .foregroundColor(.white)
-                                                                    .opacity(0.8)
-                                                            }
-                                                        } else if (length >= 20) {
-                                                            Text(event.name ?? "")
-                                                                .bold()
-                                                                .foregroundColor(.white)
-                                                        }
-                                                    }
-                                                    
-                                                }
-
-                                            }
-                                        }
-                                        
-                                        Spacer()
-                                    }
-                                }
-                            } // end of if
-                            
-                        }
                         
                         VStack {
-                            VStack {
-                                Spacer()
-                                    .frame(height: getPadding())
+                            ForEach(0..<24) { time in
                                 
-                                Line()
-                                    .stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
-                                    .frame(height: 1)
-                                    .foregroundColor(Color("color5"))
+                                HStack {
+                                    VStack(alignment: .trailing) {
+                                        Rectangle()
+                                            .frame(width: 75, height: 1)
+                                            .foregroundColor(Color("color5"))
+                                        if (time > 12) {
+                                            Text("\(time - 12) PM")
+                                                .font(Font.system(size: 15, weight: .thin))
+                                                .foregroundColor(Color("color5"))
+                                                .padding(.bottom, 60)
+                                        } else if (time == 0) {
+                                            Text("12 AM")
+                                                .font(Font.system(size: 15, weight: .thin))
+                                                .foregroundColor(Color("color5"))
+                                                .padding(.bottom, 60)
+                                        } else if (time == 12) {
+                                            Text("12 PM")
+                                                .font(Font.system(size: 15, weight: .thin))
+                                                .foregroundColor(Color("color5"))
+                                                .padding(.bottom, 60)
+                                        } else {
+                                            Text("\(time) AM")
+                                                .font(Font.system(size: 15, weight: .thin))
+                                                .foregroundColor(Color("color5"))
+                                                .padding(.bottom, 60)
+                                        }
+                                    } // VStack
+                                    Spacer()
+                                    
+                                    if (refreshBool) {
+                                        
+                                    }
+                                } // HStack
+                               
+                            } // ForEach
+                        } // VStack
+                        
+                        
+                        ZStack {
+                            ForEach(events, id: \.self) { event in
+                                
+                                let compareDate = event.date ?? Date()
+                                
+                                if ("\(currentDate.formatted(.dateTime.weekday(.wide).month(.wide).day()))" == "\(compareDate.formatted(.dateTime.weekday(.wide).month(.wide).day()))")
+                                {
+                                    
+                                    HStack {
+                                        Spacer()
+                                        VStack {
+                                            
+                                            HStack {
+                                                Spacer()
+                                                    .frame(width: 80, alignment: .leading)
+                                                
+                                                VStack {
+                                                    
+                                                    let len = (CGFloat)(event.length) * 1.577
+                                                    
+                                                    let topPadding = (CGFloat)(event.time) * 1.577
+                                                    
+                                                    Spacer()
+                                                        .frame(height: topPadding)
+                                                    
+                                                    ZStack {
+                                                        
+                                                        Button {
+                                                            pickedEvent = event
+                                                            showEdit.toggle()
+                                                        } label: {
+                                                            
+                                                            if (event.priority == 1) {
+                                                                RoundedRectangle(cornerRadius: 10)
+                                                                    .frame(width: .infinity, height: len)
+                                                                    .padding(.horizontal)
+                                                                    .foregroundColor(Color("color0"))
+                                                            } else if (event.priority == 2) {
+                                                                RoundedRectangle(cornerRadius: 10)
+                                                                    .frame(width: .infinity, height: len)
+                                                                    .padding(.horizontal)
+                                                                    .foregroundColor(Color("color1"))
+                                                            } else {
+                                                                RoundedRectangle(cornerRadius: 10)
+                                                                    .frame(width: .infinity, height: len)
+                                                                    .padding(.horizontal)
+                                                                    .foregroundColor(Color("color2"))
+                                                            }
+                                                            
+                                                        }
+                                                        
+                                                        VStack {
+                                                            
+                                                            let length = event.length
+                                                            
+                                                            if(length >= 45) {
+                                                                Text(event.name ?? "")
+                                                                    .bold()
+                                                                    .foregroundColor(.white)
+                                                                if (length == 60) {
+                                                                    Text("\((length / 60)) hour")
+                                                                        .foregroundColor(.white)
+                                                                        .opacity(0.8)
+                                                                } else if (length % 60 == 0) {
+                                                                    Text("\(length / 60) hours")
+                                                                        .foregroundColor(.white)
+                                                                        .opacity(0.8)
+                                                                } else if (length < 120 && length > 45) {
+                                                                    Text("\(length / 60) hour \(length % 60) minutes")
+                                                                        .foregroundColor(.white)
+                                                                        .opacity(0.8)
+                                                                } else if (length >= 45) {
+                                                                    Text("\(length % 60) minutes")
+                                                                        .foregroundColor(.white)
+                                                                        .opacity(0.8)
+                                                                } else {
+                                                                    Text("\(length / 60) hours \(length % 60) minutes")
+                                                                        .foregroundColor(.white)
+                                                                        .opacity(0.8)
+                                                                }
+                                                            } else if (length >= 20) {
+                                                                Text(event.name ?? "")
+                                                                    .bold()
+                                                                    .foregroundColor(.white)
+                                                            }
+                                                        }
+                                                        
+                                                    }
+
+                                                }
+                                            }
+                                            
+                                            Spacer()
+                                        }
+                                    }
+                                } // end of if
+                                
                             }
-                            Spacer()
+                            
+                            VStack {
+                                VStack {
+                                    Spacer()
+                                        .frame(height: getPadding())
+                                    
+                                    Line()
+                                        .stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
+                                        .frame(height: 1)
+                                        .foregroundColor(Color("color5"))
+                                        .id(21)
+                                }
+                                Spacer()
+                            }
+                            
                         }
                         
+                    } // ZStack
+                    .onAppear {
+                        proxy.scrollTo(21, anchor: .center)
                     }
-                    
-                } // ZStack
+                }
             }
             
             
