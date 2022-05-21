@@ -46,7 +46,11 @@ struct DayView: View {
         
         for event in events {
             if (event.anytime) {
-                event.time = Float.random(in: getTime(date: Date())...(1440 - (Float)(event.length)))
+                if (event.dateSave != Date()) {
+                    event.time = Float.random(in: 420...(1440 - (Float)(event.length)))
+                } else {
+                    event.time = Float.random(in: getTime(date: Date())...(1440 - (Float)(event.length)))
+                }
             }
             
             if (event.anyday && (Date().formatted(.dateTime.day()) != event.dateSave!.formatted(.dateTime.day()))) {
