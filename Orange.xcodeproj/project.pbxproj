@@ -11,6 +11,7 @@
 		E0226591282D842800279ACE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0226590282D842800279ACE /* ContentView.swift */; };
 		E0226593282D842A00279ACE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0226592282D842A00279ACE /* Assets.xcassets */; };
 		E0226596282D842A00279ACE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0226595282D842A00279ACE /* Preview Assets.xcassets */; };
+		E0349D762838A3FA00DA5DB4 /* Shuffle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0349D752838A3FA00DA5DB4 /* Shuffle.swift */; };
 		E05598FE282EB8A30062B086 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05598FD282EB8A30062B086 /* DayView.swift */; };
 		E073C26D283549A00062065E /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E073C26C2835499F0062065E /* CustomAlertView.swift */; };
 		E0DC6E5E2833F77700DE5CDD /* ScheduleDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E0DC6E5C2833F77700DE5CDD /* ScheduleDataModel.xcdatamodeld */; };
@@ -24,6 +25,7 @@
 		E0226590282D842800279ACE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E0226592282D842A00279ACE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0226595282D842A00279ACE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E0349D752838A3FA00DA5DB4 /* Shuffle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shuffle.swift; sourceTree = "<group>"; };
 		E05598FD282EB8A30062B086 /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		E073C26C2835499F0062065E /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 		E0DC6E5D2833F77700DE5CDD /* ScheduleDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ScheduleDataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			children = (
 				E0DC6E5F2833F78B00DE5CDD /* CoreDataManager.swift */,
 				E0DC6E5C2833F77700DE5CDD /* ScheduleDataModel.xcdatamodeld */,
+				E0349D752838A3FA00DA5DB4 /* Shuffle.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 				E0DC6E602833F78B00DE5CDD /* CoreDataManager.swift in Sources */,
 				E0226591282D842800279ACE /* ContentView.swift in Sources */,
 				E0DC6E5E2833F77700DE5CDD /* ScheduleDataModel.xcdatamodeld in Sources */,
+				E0349D762838A3FA00DA5DB4 /* Shuffle.swift in Sources */,
 				E05598FE282EB8A30062B086 /* DayView.swift in Sources */,
 				E022658F282D842800279ACE /* OrangeApp.swift in Sources */,
 			);

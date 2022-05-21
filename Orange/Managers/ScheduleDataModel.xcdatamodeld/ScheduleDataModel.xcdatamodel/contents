@@ -4,6 +4,7 @@
         <attribute name="anyday" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="anytime" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateSave" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="length" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="priority" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -12,6 +13,6 @@
         <attribute name="time" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="-63" positionY="-18" width="128" height="164"/>
+        <element name="Event" positionX="-63" positionY="-18" width="128" height="179"/>
     </elements>
 </model>

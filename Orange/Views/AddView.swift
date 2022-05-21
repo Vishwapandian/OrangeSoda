@@ -31,6 +31,21 @@ struct AddView: View {
     
     @State var colorPriority = Color("color0")
     
+    
+    func getTime(date: Date)->Float {
+        let dateFormatter = DateFormatter()
+        
+        let dateFormatter2 = DateFormatter()
+         
+        dateFormatter.dateFormat = "HH"
+        dateFormatter2.dateFormat = "mm"
+        
+        let str1 = dateFormatter.string(from: date)
+        let str2 = dateFormatter2.string(from: date)
+        
+        return ((Float)(str1) ?? 1) * 60 + ((Float)(str2) ?? 1)
+    }
+    
     var body: some View {
         VStack {
             
@@ -325,6 +340,8 @@ struct AddView: View {
                 
                 Button {
                     
+                    totalMinutesInt += (totalHoursInt * 60)
+                    
                     let dateFormatter = DateFormatter()
                     
                     let dateFormatter2 = DateFormatter()
@@ -344,17 +361,15 @@ struct AddView: View {
                         result = finalFloat
                         
                     } else {
-                        result = 0
+                        result = Float.random(in: getTime(date: Date())...(1440 - (Float)(totalMinutesInt)))
                     }
                     
-                    
-                    totalMinutesInt += (totalHoursInt * 60)
                     if nameOfEvent == "" {
                         nameOfEvent = "untitled event"
                     }
                     
                     if (totalMinutesInt != 0) {
-                        coreDM.saveEvent(name: nameOfEvent, date: selectedDate, repeats: reccuring, length: totalMinutesInt, anytime: timeMatters, time: result, selectedTime: selectedTime, priority: Int16(priority), anyday: anytimeBeforeBool)
+                        coreDM.saveEvent(name: nameOfEvent, date: selectedDate, repeats: reccuring, length: totalMinutesInt, anytime: timeMatters, time: result, selectedTime: selectedTime, priority: Int16(priority), anyday: anytimeBeforeBool, dateSave: selectedDate)
                         showEventPicker = false
                     }
                     
