@@ -49,7 +49,7 @@ struct DayView: View {
                 event.time = Float.random(in: getTime(date: Date())...(1440 - (Float)(event.length)))
             }
             
-            if (event.anyday) {
+            if (event.anyday && (Date().formatted(.dateTime.day()) != event.dateSave!.formatted(.dateTime.day()))) {
                 let val1 = Int(Date().timeIntervalSince1970)
                 let val2 = Int((event.dateSave ?? Date()).timeIntervalSince1970)
                 
