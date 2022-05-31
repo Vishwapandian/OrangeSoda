@@ -12,6 +12,10 @@ struct ContentView: View {
     let coreDM: CoreDataManager
     
     var body: some View {
+        
+        AllTasksView(coreDM: coreDM, events: coreDM.getAllEvents())
+        
+        /*
         TabView {
             
             AllTasksView(coreDM: coreDM, events: coreDM.getAllEvents())
@@ -26,6 +30,7 @@ struct ContentView: View {
             
         }
         .ignoresSafeArea()
+         */
     }
 }
 

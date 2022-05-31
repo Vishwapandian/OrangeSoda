@@ -26,6 +26,8 @@ struct AllTasksView: View {
                             HStack {
                                 VStack {
                                     Text(event.name!)
+                                    Text("Due Date: \(event.dateSave!.formatted(.dateTime.day()))")
+                                    Text("Length: \(event.length / 60) hours \(event.length % 60) minutes")
                                 }
                             }
                         }
